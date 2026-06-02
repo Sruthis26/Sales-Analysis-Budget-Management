@@ -205,27 +205,3 @@ The dashboard provides visibility into:
 The solution supports data-driven decision-making through interactive reporting and analytical insights.
 
 ---
-
-## Repository Contents
-
-```text
-Sales-Analysis-Budget-Management/
-│
-├── README.md
-├── Sales Report_Finished.pbix
-├── Business Analysis Report.pdf
-├── User Stories.pdf
-│
-└── images/
-    └── Sales_analysis_preview.gif
-```
-
----
-
-## Author
-
-**Sruthi S**
-
-B.Tech Computer Science and Design
-
-Aspiring Business Analyst
