@@ -2,97 +2,240 @@
 
 ## Project Overview
 
-This project demonstrates an end-to-end Business Analysis and Business Intelligence solution developed using SQL Server and Power BI.
+The Sales Analysis & Budget Management Dashboard is a Business Intelligence and Data Analytics project developed using SQL Server and Power BI. The project focuses on transforming raw sales data into meaningful business insights through data preparation, modeling, visualization, and KPI reporting.
 
-The objective was to transform sales data into interactive dashboards that provide visibility into customer performance, product performance, sales trends, and budget tracking. The solution enables stakeholders to make informed decisions through dynamic reporting and self-service analytics.
+Organizations generate large volumes of sales data every day, but raw data alone does not help decision-makers. This project demonstrates how data can be extracted, transformed, modeled, and visualized to help stakeholders monitor sales performance, compare actual sales against budget targets, identify top-performing customers and products, and analyze business trends over time.
+
+The final solution consists of interactive Power BI dashboards that provide a comprehensive view of sales performance and support data-driven decision-making.
 
 ---
 
-## Dashboard Preview
+## Dashboard Screenshots
 
-![Dashboard Preview](images/Sales_analysis_preview.gif)
+### Sales Overview Dashboard
+
+![Sales Overview](images/sales-overview.png)
+
+The Sales Overview dashboard provides a high-level summary of business performance. It enables stakeholders to monitor sales trends, evaluate budget performance, identify top customers and products, and analyze sales distribution across different regions.
+
+---
+
+### Customer Details Dashboard
+
+![Customer Details](images/customer-details.png)
+
+The Customer Details dashboard focuses on customer-level analysis. It helps identify high-value customers, understand purchasing behavior, and evaluate customer contribution to overall revenue.
+
+---
+
+### Product Details Dashboard
+
+![Product Details](images/product-details.png)
+
+The Product Details dashboard provides detailed product performance analysis. It helps identify best-selling products, monitor product trends, and evaluate product contribution to sales revenue.
 
 ---
 
 ## Business Problem
 
-Traditional sales reports often make it difficult to:
+Many organizations rely on static reports and spreadsheets for monitoring sales performance. While these reports provide historical information, they often lack flexibility and make it difficult to perform deeper analysis.
 
-- Analyze sales performance across products and customers
-- Track sales trends over time
-- Compare actual sales against budget targets
-- Identify top-performing products and customers
-- Access actionable insights quickly
+Common challenges include:
 
-An interactive reporting solution was required to improve business visibility and support data-driven decision-making.
+- Difficulty identifying top-performing products and customers.
+- Limited visibility into sales trends and performance over time.
+- Lack of comparison between actual sales and budget targets.
+- Time-consuming manual reporting processes.
+- Inability to perform interactive analysis using filters and drill-downs.
 
----
-
-## Business Analysis Activities
-
-### Requirement Analysis
-- Identified reporting objectives
-- Defined analytical requirements
-- Mapped business needs to dashboard features
-
-### Documentation
-- Created Business Requirement Documentation (BRD)
-- Defined user stories and acceptance criteria
-- Documented reporting requirements
-
-### Solution Design
-- Defined KPIs and reporting metrics
-- Designed dashboard structure and navigation
-- Planned analytical views for business users
+To address these challenges, an interactive reporting solution was required to provide stakeholders with actionable insights and improve decision-making.
 
 ---
 
 ## Project Objectives
 
-- Analyze sales performance over time
-- Compare sales performance against budget
-- Identify top-performing customers
-- Identify best-selling products
-- Enable interactive filtering and reporting
-- Improve visibility into business performance
+The primary objectives of this project were:
+
+- Analyze sales performance across different time periods.
+- Compare actual sales against budget targets.
+- Identify top-performing products and customers.
+- Monitor business performance using KPIs.
+- Analyze sales distribution across geographical regions.
+- Enable interactive and self-service reporting.
+- Support data-driven business decisions through visualization and analytics.
+
+---
+
+## Dataset Overview
+
+The project utilizes sales, customer, product, calendar, and budget datasets.
+
+### FACT_InternetSales
+
+The Internet Sales fact table contains transactional sales data and serves as the primary source for revenue analysis.
+
+Key fields include:
+
+- Product Key
+- Customer Key
+- Order Date
+- Sales Order Number
+- Sales Amount
+
+This table is used to calculate sales performance metrics and revenue-related KPIs.
+
+---
+
+### FACT_Budget
+
+The Budget fact table contains planned sales targets used for comparison against actual sales performance.
+
+This table enables variance analysis and helps measure business performance against predefined goals.
+
+---
+
+### DIM_Customers
+
+The Customer dimension table contains customer-related information used for customer analysis.
+
+Key attributes include:
+
+- Customer Name
+- Gender
+- Customer City
+- Date of First Purchase
+
+This table supports customer segmentation and revenue contribution analysis.
+
+---
+
+### DIM_Products
+
+The Product dimension table contains product-related information used for product performance analysis.
+
+Key attributes include:
+
+- Product Name
+- Product Category
+- Product Subcategory
+- Product Color
+- Product Status
+
+This table helps identify high-performing products and product categories.
+
+---
+
+### DIM_Calendar
+
+The Calendar dimension table contains date-related information used for trend analysis and time intelligence reporting.
+
+Key attributes include:
+
+- Date
+- Month
+- Quarter
+- Year
+
+This table enables monthly, quarterly, and yearly sales analysis.
 
 ---
 
 ## Data Preparation
 
-Data was extracted, cleansed, and transformed using SQL before loading into Power BI.
+Data preparation was performed using SQL Server before loading the data into Power BI.
 
-### Fact Tables
-- FACT_InternetSales
-- FACT_Budget
+The preparation process included:
 
-### Dimension Tables
-- DIM_Customers
-- DIM_Products
-- DIM_Calendar
+### Data Extraction
+
+Relevant tables were extracted from the source database to support reporting requirements.
+
+### Data Cleansing
+
+Unnecessary fields were removed and only business-relevant attributes were retained.
+
+### Data Transformation
+
+Columns were renamed and transformed into a business-friendly format to improve readability and usability.
+
+### Data Validation
+
+Data quality checks were performed to ensure consistency and accuracy before dashboard development.
+
+The transformed dataset was then imported into Power BI for modeling and visualization.
 
 ---
 
 ## Data Modeling
 
-A Star Schema data model was implemented to support efficient reporting and analysis.
+A Star Schema data model was implemented to improve reporting performance and simplify analysis.
 
-### Relationships
-- Customer → Sales
-- Product → Sales
-- Calendar → Sales
+### Fact Tables
 
-The model enables analysis across customers, products, and time periods.
+- FACT_InternetSales
+- FACT_Budget
+
+### Dimension Tables
+
+- DIM_Customers
+- DIM_Products
+- DIM_Calendar
+
+The fact tables store transactional data, while the dimension tables provide descriptive information used for filtering and categorization.
+
+### Benefits of Star Schema
+
+- Faster query performance
+- Improved dashboard responsiveness
+- Simplified report development
+- Easier maintenance and scalability
+- Better analytical capabilities
+
+---
+
+## DAX Measures
+
+Several DAX measures were created to support KPI reporting and business analysis.
+
+### Total Sales
+
+Calculates the total revenue generated from sales transactions.
+
+```DAX
+Sales =
+SUM ( FACT_InternetSales[SalesAmount] )
+```
+
+### Total Budget
+
+Calculates the total budget allocated for the selected period.
+
+```DAX
+Budget =
+SUM ( FACT_Budget[Budget] )
+```
+
+### Profit
+
+Calculates the difference between actual sales and budget.
+
+```DAX
+Profit =
+[Sales] - [Budget]
+```
+
+These measures form the foundation of the dashboard's KPI reporting.
 
 ---
 
 ## Dashboard Pages
 
-### 1. Sales Overview
+### 1. Sales Overview Dashboard
 
-Provides a high-level summary of sales performance.
+The Sales Overview dashboard provides a consolidated view of business performance.
 
-**Features**
+Key features include:
+
 - Sales vs Budget KPI
 - Product Category Analysis
 - Top 10 Customers
@@ -101,107 +244,162 @@ Provides a high-level summary of sales performance.
 - Geographic Sales Distribution
 - Year and Month Filters
 
+Business users can quickly assess overall performance and identify important trends.
+
 ---
 
-### 2. Customer Details
+### 2. Customer Details Dashboard
 
-Provides customer-level sales analysis.
+The Customer Details dashboard focuses on customer-level insights.
 
-**Features**
-- Top Customers Analysis
+Key features include:
+
+- Top Customers by Revenue
 - Customer Purchase Trends
 - Monthly Sales Analysis
 - Budget Comparison
 - Interactive Filtering
 
+This dashboard helps businesses identify valuable customers and understand customer purchasing patterns.
+
 ---
 
-### 3. Product Details
+### 3. Product Details Dashboard
 
-Provides product-level sales analysis.
+The Product Details dashboard focuses on product-level performance.
 
-**Features**
-- Top Products Analysis
-- Product Sales Trends
+Key features include:
+
+- Top Products by Sales
+- Product Performance Trends
 - Monthly Product Analysis
 - Budget Comparison
 - Interactive Filtering
+
+This dashboard helps stakeholders evaluate product success and identify opportunities for growth.
 
 ---
 
 ## Key Performance Indicators (KPIs)
 
-- Sales
-- Budget
-- Profit
-- Top 10 Customers
-- Top 10 Products
-- Product Category Performance
-- Sales Trend Analysis
-- Geographic Sales Distribution
+The project tracks several important business metrics.
+
+### Total Sales
+
+Measures the total revenue generated during the selected period.
+
+### Budget
+
+Represents planned sales targets used for performance evaluation.
+
+### Profit
+
+Measures the variance between actual sales and budget.
+
+### Top Customers
+
+Identifies customers contributing the highest revenue.
+
+### Top Products
+
+Identifies products generating the highest sales.
+
+### Product Category Performance
+
+Measures sales contribution across product categories.
+
+### Sales Trends
+
+Tracks sales growth and performance over time.
+
+### Geographic Sales Distribution
+
+Visualizes sales performance across different locations.
 
 ---
 
-## Business Value Delivered
+## Key Insights
 
-The dashboard enables stakeholders to:
+The dashboard enables several business insights, including:
 
-- Monitor sales performance efficiently
-- Compare actual sales against budget targets
-- Identify high-value customers
-- Identify best-selling products
-- Analyze sales trends over time
-- Perform self-service analysis through filters
-- Make faster and more informed business decisions
+- Identification of top-performing products and categories.
+- Recognition of high-value customers contributing significant revenue.
+- Analysis of sales trends across different time periods.
+- Evaluation of business performance against budget targets.
+- Identification of geographical regions generating the highest sales.
+
+These insights support strategic planning and operational decision-making.
+
+---
+
+## Tools & Technologies Used
+
+### Data Analysis
+- SQL Server
+- SQL
+
+### Business Intelligence
+- Power BI
+- DAX
+
+### Data Modeling
+- Star Schema Design
+
+### Supporting Tools
+- Microsoft Excel
 
 ---
 
 ## Skills Demonstrated
 
-### Business Analysis
-- Requirement Analysis
-- Business Requirement Documentation (BRD)
-- User Story Definition
-- Acceptance Criteria Mapping
+This project demonstrates the following skills:
 
 ### Data Analysis
-- SQL
-- Data Cleansing
+- SQL Querying
+- Data Extraction
+- Data Cleaning
 - Data Transformation
-- KPI Development
+- Data Validation
+
+### Data Modeling
+- Star Schema Design
+- Fact and Dimension Modeling
+- Relationship Management
+
+### Data Visualization
+- Dashboard Design
+- Interactive Reporting
+- KPI Reporting
+- Business Data Visualization
 
 ### Business Intelligence
-- Power BI
-- DAX
-- Star Schema Modeling
-- Dashboard Development
-- Data Visualization
-
----
-
-## Tools & Technologies
-
-- Power BI
-- SQL Server
-- SQL
-- DAX
-- Microsoft Excel
-- Star Schema Modeling
+- DAX Measures
+- Performance Monitoring
+- Trend Analysis
+- Data-Driven Decision Support
 
 ---
 
 ## Project Outcome
 
-Successfully transformed sales data into an interactive Business Intelligence solution.
+The project successfully transformed raw sales data into an interactive Business Intelligence solution.
 
-The dashboard provides visibility into:
+The dashboard provides stakeholders with visibility into:
 
+- Sales Performance
 - Customer Performance
 - Product Performance
-- Sales Trends
 - Budget Tracking
-- Geographic Sales Distribution
+- Geographic Sales Analysis
 
-The solution supports data-driven decision-making through interactive reporting and analytical insights.
+By combining SQL-based data preparation, star schema modeling, DAX calculations, and Power BI visualizations, the solution enables efficient reporting and supports data-driven business decision-making.
 
 ---
+
+## Author
+
+**Sruthi S**
+
+B.Tech Computer Science and Design
+
+Aspiring Data Analyst | Business Analyst
