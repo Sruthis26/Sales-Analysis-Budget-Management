@@ -14,7 +14,7 @@ The final solution consists of interactive Power BI dashboards that provide a co
 
 ### Sales Overview Dashboard
 
-![Sales Overview](images/sales-overview.png)
+![Sales Overview](sales-overview.png)
 
 The Sales Overview dashboard provides a high-level summary of business performance. It enables stakeholders to monitor sales trends, evaluate budget performance, identify top customers and products, and analyze sales distribution across different regions.
 
@@ -22,7 +22,7 @@ The Sales Overview dashboard provides a high-level summary of business performan
 
 ### Customer Details Dashboard
 
-![Customer Details](images/customer-details.png)
+![Customer Details](customer-details.png)
 
 The Customer Details dashboard focuses on customer-level analysis. It helps identify high-value customers, understand purchasing behavior, and evaluate customer contribution to overall revenue.
 
@@ -30,7 +30,7 @@ The Customer Details dashboard focuses on customer-level analysis. It helps iden
 
 ### Product Details Dashboard
 
-![Product Details](images/product-details.png)
+![Product Details](product-details.png)
 
 The Product Details dashboard provides detailed product performance analysis. It helps identify best-selling products, monitor product trends, and evaluate product contribution to sales revenue.
 
