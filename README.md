@@ -98,7 +98,7 @@ A Star Schema data model was implemented to improve reporting performance and si
 
 ### Data Model
 
-![Data Model](images/schema.png)
+![Data Model](schema.png)
 
 The model consists of two fact tables and three dimension tables connected through one-to-many relationships.
 
